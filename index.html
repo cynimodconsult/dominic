@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dominic — Creative Director</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Mobile-first base styles */
+    :root{
+      --glass-bg: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.12);
+      --accent: #7C3AED; /* chroma purple */
+      --neon: #00E5FF;    /* neon cyan */
+      --soft: 20px;
+      --glass-blur: 12px;
+    }
+
+    html,body,#app{height:100%;}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, rgba(12,8,20,1) 0%, rgba(5,5,12,1) 100%);
+      color: white;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+
+    /* Full-bleed hero placeholder */
+    .hero-bg{
+      background-image: url('Dominic.jpg');
+      background-size:cover;
+      background-position:center;
+    }
+
+    /* glassmorphism panel */
+    .glass {
+      background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border-radius: 16px;
+    }
+
+    /* handwritten heading (use a system fallback) */
+    .handwritten{
+      font-family: 'Caveat', 'Gloria Hallelujah', 'Segoe Script', cursive;
+      font-weight:700;
+      letter-spacing:0.6px;
+    }
+
+    /* marquee */
+    .marquee{
+      white-space:nowrap;
+      display:inline-block;
+      animation: marquee 18s linear infinite;
+    }
+    @keyframes marquee{
+      0%{transform:translateX(100%);} 
+      100%{transform:translateX(-100%);} 
+    }
+
+    /* header */
+    header{position:fixed; inset:0 0 auto 0; z-index:40;}
+    .hamburger{width:48px;height:48px;border-radius:10px}
+
+    /* off-canvas nav */
+    .nav-panel{position:fixed; right:1.25rem; top:4.5rem; width:88%; max-width:340px; z-index:50;}
+
+    /* sticky contact button animation */
+    .contact-btn-enter{animation:slideUp .9s cubic-bezier(.16,.84,.44,1) both}
+    @keyframes slideUp{from{transform:translateY(28px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+    /* bounce every 3s */
+    .contact-pulse{animation: contactBounce 3s ease-in-out infinite; animation-delay:1.5s}
+    @keyframes contactBounce{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+    }
+
+    /* neon outline */
+    .neon-outline{box-shadow:0 6px 30px rgba(0,229,255,0.06), 0 0 18px rgba(124,58,237,0.07); border:1px solid rgba(0,229,255,0.08)}
+
+    /* desktop adjustments */
+    @media(min-width:768px){
+      .nav-panel{right:2rem; top:5.25rem}
+      .marquee{animation-duration:12s}
+    }
+
+   /* desktop adjustments */
+@media(min-width:768px){
+  .nav-panel{right:2rem; top:5.25rem}
+  .marquee{animation-duration:12s}
+  /* Optional: Keep 100vh for stable desktop view */
+  .hero-min{min-height:100vh}
+}
+
+/* large screen hero height */
+@supports (min-height: 100dvh) {
+  .hero-min {
+    min-height: 100dvh; /* Dynamic Height for Mobile Browsers */
+  }
+}
+/* Fallback for older browsers (100vh) is still applied before the @supports block */
+.hero-min{min-height:100vh}
+  </style>
+</head>
+<body>
+  <div id="app" class="hero-bg hero-min relative overflow-hidden">
+
+    <!-- Transparent header with hamburger -->
+    <header class="w-full px-4 md:px-8 py-4 flex justify-end items-center">
+      <button id="hamburger" aria-label="Open menu" class="glass neon-outline hamburger flex items-center justify-center p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400">
+        <!-- simple hamburger icon -->
+        <svg width="22" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Off-canvas nav (hidden by default) -->
+    <div id="navPanel" class="nav-panel hidden">
+      <div class="glass p-4 md:p-6 neon-outline">
+        <nav class="space-y-4 text-sm">
+          <a href="https://www.linkedin.com/in/dominic-frimpong-1166a3290?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" class="block py-3 px-3 rounded-md hover:bg-white/6">Thoughts — LinkedIn</a>
+          <div class="border-t border-white/6 mt-1 pt-3"></div>
+          <div class="text-xs text-white/70">Businesses</div>
+          <a href="https://cynimod.com/" class="block py-2 px-3 rounded-md hover:bg-white/6">Cynimod</a>
+          <a href="https://linktr.ee/oustorie" class="block py-2 px-3 rounded-md hover:bg-white/6">Oü STORIE</a>
+          <div class="border-t border-white/6 mt-2 pt-3"></div>
+          <a href="https://musics.to/ItWillBeDifferent" target="_blank" rel="noopener noreferrer" class="block py-3 px-3 rounded-md hover:bg-white/6">Music — Mandm</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Hero content centered -->
+    <main class="w-full h-full flex items-center justify-center px-6 md:px-12">
+      <section class="max-w-3xl text-center">
+        <h1 class="handwritten text-5xl md:text-7xl leading-tight drop-shadow-[0_6px_24px_rgba(0,0,0,0.6)]">Dominic</h1>
+        <div class="mt-6 md:mt-8 text-sm md:text-lg tracking-wide overflow-hidden">
+          <div class="glass inline-block px-4 py-3 rounded-full neon-outline">
+            <div class="w-[320px] md:w-[680px] overflow-hidden">
+              <div class="marquee text-md md:text-lg font-medium">Creative Director,&nbsp;Junior Front-end Developer,&nbsp;Entrepreneur,&nbsp;Corporate Professional,&nbsp;Music and Fashion Enthusiast&nbsp;—&nbsp;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Supporting micro interactions -->
+        <div class="mt-8 md:mt-12 flex items-center justify-center gap-4">
+          <button id="aboutBtn" class="glass px-4 py-2 rounded-lg text-sm hover:scale-[1.02] transition-transform">About</button>
+          <a href="https://cynimod.com/view-portfolio/" target="_blank" class="glass px-4 py-2 rounded-lg text-sm hover:scale-[1.02] transition-transform">Work</a>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Sticky Get Contact Button -->
+    <div class="fixed left-1/2 transform -translate-x-1/2 bottom-6 md:bottom-8 z-50">
+      <button id="contactBtn" class="contact-btn-enter contact-pulse glass px-6 py-3 rounded-xl shadow-lg backdrop-blur-md flex items-center gap-3 text-sm font-semibold hover:scale-105 focus:outline-none" title="Download vCard">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11l4 4 4-4" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Get Contact
+      </button>
+    </div>
+
+    <!-- Decorative neon accents -->
+    <div aria-hidden="true" class="absolute -left-24 -top-16 w-80 h-80 rounded-full bg-gradient-to-tr from-[rgba(124,58,237,0.12)] to-[rgba(0,229,255,0.08)] blur-3xl pointer-events-none"></div>
+    <div aria-hidden="true" class="absolute -right-36 bottom-12 w-96 h-96 rounded-full bg-gradient-to-bl from-[rgba(0,229,255,0.08)] to-[rgba(124,58,237,0.06)] blur-3xl pointer-events-none"></div>
+
+    <div id="aboutModal" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-6 md:p-10">
+  <div class="glass neon-outline max-w-xl w-full p-6 md:p-8 relative">
+    
+    <button id="closeModalBtn" aria-label="Close bio popup" class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    
+    <h3 class="handwritten text-4xl mb-4 text-white">Dominic's Story</h3>
+    <div class="text-sm space-y-4 text-white/90">
+      <p>I am a <strong>Creative Director</strong> and <strong>Junior Front-end Developer</strong> with a passion for blending innovative design with functional code. My journey has been defined by <strong>entrepreneurship</strong> and corporate experience, giving me a unique perspective on product development and brand strategy.</p>
+      <p>I founded <strong>Cynimod</strong>, a creative agency, and am involved with <strong>Oü STORIE</strong> in the fashion and design space. My professional life is balanced by a deep enthusiasm for <strong>music and fashion</strong>, which constantly inspires my approach to visual and digital projects.</p>
+      <p>Whether I'm leading a creative team, architecting a user interface, or diving into new ventures, my goal is always to deliver polished, impactful results that resonate.</p>
+    </div>
+    
+    <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-4 text-xs font-medium">
+      <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="bg-white/10 px-3 py-1 rounded-full hover:bg-white/20 transition-colors">LinkedIn</a>
+      <a href="mailto:1dominicfrimpong@gmail.com" target="_blank" rel="noopener noreferrer" class="bg-white/10 px-3 py-1 rounded-full hover:bg-white/20 transition-colors">Send Email</a>
+    </div>
+  </div>
+</div>
+
+    <!-- lightweight footer for semantics -->
+    <footer class="absolute bottom-0 left-0 w-full text-center text-xs text-white/50 py-4">&copy; <span id="year"></span> Dominic — You're Alone.</footer>
+
+  </div>
+
+<script>
+    // Populate copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // VCF content (as requested)
+    const vcfText = `BEGIN:VCARD\nVERSION:3.0\nFN:Dominic\nTEL:+233559348703\nEMAIL:1dominicfrimpong@gmail.com\nORG:Cynimod; GNCCI; Oü STORIE\nEND:VCARD`;
+
+    // Download helper
+    function downloadVCF(){
+      const blob = new Blob([vcfText], {type: 'text/vcard;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Dominic.vcf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    // --- Interaction Logic ---
+    const hamburger = document.getElementById('hamburger');
+    const navPanel = document.getElementById('navPanel');
+    const aboutBtn = document.getElementById('aboutBtn');
+    const aboutModal = document.getElementById('aboutModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const contactBtn = document.getElementById('contactBtn');
+
+    let navOpen = false;
+    let modalOpen = false;
+    
+    // Function to close all overlays
+    function closeAll(){
+      // Close navigation
+      navOpen = false;
+      navPanel.classList.add('hidden');
+      hamburger.setAttribute('aria-expanded', 'false');
+      
+      // Close modal
+      modalOpen = false;
+      aboutModal.classList.add('hidden');
+    }
+
+    // Toggle Nav Panel
+    hamburger.addEventListener('click', ()=>{
+      if(modalOpen) closeAll(); // Close modal if nav is opened
+      navOpen = !navOpen;
+      navPanel.classList.toggle('hidden', !navOpen);
+      hamburger.setAttribute('aria-expanded', String(navOpen));
+    });
+
+    // Open Modal
+    aboutBtn.addEventListener('click', ()=>{
+      closeAll(); // Ensure nav is closed
+      modalOpen = true;
+      aboutModal.classList.remove('hidden');
+    });
+
+    // Close Modal via button
+    closeModalBtn.addEventListener('click', closeAll);
+
+    // Close Modal/Nav when clicking outside or pressing ESC
+    document.addEventListener('click', (e)=>{
+      // If nav is open AND click is outside nav/hamburger
+      if(navOpen && !navPanel.contains(e.target) && !hamburger.contains(e.target)){
+        closeAll();
+      }
+      // If modal is open AND click is on the dark backdrop (the modal container)
+      if(modalOpen && aboutModal.contains(e.target) && e.target.id === 'aboutModal'){
+        closeAll();
+      }
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        closeAll();
+      }
+    });
+
+    // Contact button behavior: download vcard
+    contactBtn.addEventListener('click', ()=>{
+      // provide a gentle feedback microinteraction
+      contactBtn.animate([
+        { transform: 'translateY(0) scale(1)' },
+        { transform: 'translateY(-4px) scale(0.995)' },
+        { transform: 'translateY(0) scale(1)' }
+      ], { duration: 320, easing: 'ease-out' });
+
+      downloadVCF();
+    });
+
+    // Optional: reduce-motion support
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(mq.matches){
+      document.querySelectorAll('.marquee').forEach(el=>el.style.animation = 'none');
+      document.querySelectorAll('.contact-pulse').forEach(el=>el.style.animation = 'none');
+    }
+
+  </script>
+  </body>
+</html>
